@@ -2,5 +2,6 @@ Lunchdax is a tool for locating nearby lunch offerings. It was built as part of 
 
 - IOS app
 - Andriod app
+- Crossplatform Flutter app (not done)
 - Firebase backend
 - HTML + jQuery frontend
