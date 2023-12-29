@@ -24,7 +24,7 @@ const nodemailer = require('nodemailer');
 
 //google account credentials used to send email
 const mailTransport = nodemailer.createTransport(
-    `smtps://lunchdaxuf@gmail.com:Gabbegillarkorv123@smtp.gmail.com`);
+    `smtps://lunchdaxuf@gmail.com:<password>`);
 
 
 function sendMail(message, subject) {
@@ -77,7 +77,7 @@ exports.newMessage = functions.https.onRequest((req, res) => {
         uri: 'https://recaptcha.google.com/recaptcha/api/siteverify',
         method: 'POST',
         formData: {
-            secret: '6LeBRIQUAAAAAOdEq5nGgderV0WGCU7YwtzzbAOv',
+            secret: '',
             response: req.query['g-recaptcha-response']
         },
         json: true
