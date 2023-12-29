@@ -1,0 +1,1178 @@
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="icon" href="../images/loggaikon.ico" type="icon">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/userstyle.css">
+
+  <script src="../js/jquery.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+
+
+  <script src="../js/user/card.js"></script>
+  <script defer async src="../js/timepicker.js"></script>
+
+  <script defer async type="text/javascript" src='../js/user/createDropArea.js'></script>
+  <script defer async type="text/javascript" src='../js/user/resizeBody.js'></script>
+
+<script type="text/javascript" src="../js/excanvas.js"></script>
+
+
+<script type="text/javascript" src="../js/spinners.min.js"></script>
+  
+  
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-storage.js"></script>
+
+  <script type="text/javascript" src='../js/cropper.js'></script>
+
+
+
+</head>
+
+<style>
+  button {
+    margin-left: 5px;
+  }
+</style>
+
+
+<body>
+
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script defer async>
+
+    setTimeout(function () {
+
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/sv_SE/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    }, 4000);
+
+
+
+  </script>
+
+  <!-- Your customer chat code -->
+  <div class="fb-customerchat" attribution=setup_tool page_id="1915918025383257" theme_color="#009de3"
+    logged_in_greeting="Frågor? Ställ dem här!" logged_out_greeting="Frågor? Ställ dem här!">
+  </div>
+
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="https://www.lunchdaxuf.se" target="blank"><img src="../images/logga_transparant_1080p.png"
+        style="width:180px;margin-left:0px;object-fit:contain "></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item active">
+
+        </li>
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" style="display:none;">
+          <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Redigera Restauranger
+          </button>
+          <div class="dropdown-menu">
+            <table id="admin-dropdown">
+
+            </table>
+        </div>
+        </form>
+
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-outline-warning" style="width:auto; " id="menuScan" type="button"><img src="../images/wand.png"> Menyscanner</button>
+        </form>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-secondary" id="mat" type="button"><img src="../images/silverware-fork-knife.png">
+          Maträtt</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-success" id="rest" type="button"><img src="../images/home.png"> Restaurang</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-danger" id="signOutBtn" type="button"><img src="../images/logout.png"> Logga ut</button>
+      </form>
+    </div>
+  </nav>
+
+
+  <main>
+    <!-- Veckodagar i rader -->
+    <div id='cards'>
+      <!-- Måndag -->
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Måndag</h3>
+        </div>
+
+        <button class="btn btn-success" id="matratt1" type="button" data-toggle="modal" data-target="#addfoodModal"
+          data-whatever="@getbootstrap"> + Lägg till maträtt</button>
+      </div>
+
+      <!-- Tisdag -->
+      <div class="row">
+        <!-- Rubrik -->
+        <div class="col-sm-4">
+          <h3>Tisdag</h3>
+        </div>
+
+        <button class="btn btn-success" id="matratt2" type="button" data-toggle="modal" data-target="#addfoodModal"
+          data-whatever="@getbootstrap"> + Lägg till maträtt</button>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Onsdag</h3>
+        </div>
+
+        <button class="btn btn-success" id="matratt3" type="button" data-toggle="modal" data-target="#addfoodModal"
+          data-whatever="@getbootstrap"> + Lägg till maträtt</button>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Torsdag</h3>
+        </div>
+
+        <button class="btn btn-success" id="matratt4" type="button" data-toggle="modal" data-target="#addfoodModal"
+          data-whatever="@getbootstrap"> + Lägg till maträtt</button>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Fredag</h3>
+        </div>
+
+        <button class="btn btn-success" id="matratt5" type="button" data-toggle="modal" data-target="#addfoodModal"
+          data-whatever="@getbootstrap"> + Lägg till maträtt</button>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Lördag</h3>
+        </div>
+
+        <button class="btn btn-success" id="matratt6" type="button" data-toggle="modal" data-target="#addfoodModal"
+          data-whatever="@getbootstrap"> + Lägg till maträtt</button>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Söndag</h3>
+        </div>
+
+        <button class="btn btn-success" id="matratt7" type="button" data-toggle="modal" data-target="#addfoodModal"
+          data-whatever="@getbootstrap"> + Lägg till maträtt</button>
+      </div><br>
+    </div>
+
+
+
+
+    <!-- Modal för att redigera sin restaurang -->
+    <div class="modal fade" id="restaurangModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style='min-width:500px;'>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Redigera restaurang</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="drop-area">
+
+              <div class="left">
+                <div id="picture">
+                  <canvas id="canvas" height='240'></canvas>
+                  <progress id="progress" class="progress" value="0" max-value="100" style="display:none;"></progress>
+                </div>
+
+                <div id="sourcediv" style="display:none;">
+                  <img id="source" src="../images/placeholder.png" crossorigin>
+                </div>
+              </div>
+
+              <div class="right">
+                <form class="my-form">
+                  <input type="file" id="selectedFile" style="display: none;" multiple accept="image/*" onchange="handleFiles(this.files)" />
+                  <input type="button" class="btn btn-outline-primary" value="Välj en fil" onclick="document.getElementById('selectedFile').click();" />
+                </form>
+                <p></p>
+
+                <p>eller</p>
+
+                <section class="flexbox">
+                  <div class="stretch">
+                    <input type="text" placeholder="http://Länka.din.bild" />
+                  </div>
+                </section>
+                <p></p>
+
+                <p>eller</p>
+
+                <h6>Dra och släpp filen på bilden</h6>
+              </div>
+            </div>
+            <br><br>
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Namn:</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Adress:</label>
+                <input type="text" class="form-control" id="address">
+              </div>
+            </form>
+            <div class="accordion" id="accordionExample">
+              <div class="modal-card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                      aria-expanded="false" aria-controls="collapseOne">
+                      Öppettider<img src="../images/menu-down.png">
+                    </button>
+                  </h5>
+                </div>
+
+                <!-- Dropdown för öppettider -->
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <table class="modal-table" id="timeTable">
+
+                    </table><br>
+                    <p style="text-align: center">* Tiderna som är blåmarkerade behöver du bara fylla i om du har flera
+                      öppettider på samma dag.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Stäng</button>
+            <button type="button" class="btn btn-primary">Spara</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal för att lägga till maträtt på en dag -->
+    <div class="modal fade" id="addFoodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style='min-width:500px;'>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Välj en rätt</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body noPadding" id="content">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal för att redigera en skapad maträtt -->
+    <div class="modal fade" id="matModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style='min-width:491px;'>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Redigera maträtt</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="drop-area">
+
+              <div class="left">
+                <div id="picture">
+                  <canvas id="canvas" src="../images/placeholder.png" height='240'></canvas>
+                  <progress id="progress" class="progress" value="0" max-value="100" style="display:none;"></progress>
+                </div>
+
+                <div id="sourcediv" style="display:none;">
+                  <img id="source" src="../images/placeholder.png" crossorigin>
+                </div>
+              </div>
+
+              <div class="right">
+                <form class="my-form">
+                  <input type="file" id="selectedFile" style="display: none;" multiple accept="image/*" onchange="handleFiles(this.files)" />
+                  <input type="button" class="btn btn-outline-primary" value="Välj en fil" onclick="document.getElementById('selectedFile').click();" />
+                </form>
+                <p></p>
+
+                <p>eller</p>
+
+                <section class="flexbox">
+                  <div class="stretch">
+                    <input id="url" class="form-control" type="text" placeholder="http://Länka.din.bild" />
+                  </div>
+                </section>
+                <p></p>
+
+                <p>eller</p>
+
+                <h6>Dra och släpp filen på bilden</h6>
+              </div>
+            </div>
+            <br><br>
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Namn:</label>
+                <input type="text" class="form-control" id="name" value="" placeholder="Din rätt i ett eller två ord">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Pris:</label>
+                <input type="text" class="form-control" id="price" placeholder="Priset på din rätt (tex 89)">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Beskrivning:</label>
+                <textarea class="form-control" id="description" placeholder="Vad som ingår, (tex: Serveras med sallad och nybakat bröd)"></textarea>
+              </div>
+              <ul class="list">
+                <li class="list-item">
+                  <input type="checkbox" class="hidden-box" id="veg" />
+                  <label for="veg" class="check--label">
+                    <span class="check--label-box"></span>
+                    <span class="check--label-text">Vegetariskt</span>
+                  </label>
+                </li>
+                <li class="list-item">
+                  <input type="checkbox" class="hidden-box" id="vegan" />
+                  <label for="vegan" class="check--label">
+                    <span class="check--label-box"></span>
+                    <span class="check--label-text">Veganskt</span>
+                  </label>
+                </li>
+                <li class="list-item">
+                  <input type="checkbox" class="hidden-box" id="gluten" />
+                  <label for="gluten" class="check--label">
+                    <span class="check--label-box"></span>
+                    <span class="check--label-text">Glutenfritt</span>
+                  </label>
+                </li>
+                <li class="list-item">
+                  <input type="checkbox" class="hidden-box" id="laktos" />
+                  <label for="laktos" class="check--label">
+                    <span class="check--label-box"></span>
+                    <span class="check--label-text">Laktosfritt</span>
+                  </label>
+                </li>
+              </ul>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Stäng</button>
+            <button type="button" class="btn btn-primary">Spara</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer>
+      <p style="display:inline">Kontakta oss på <a style="color:black;text-decoration:underline" href="http://m.me/1915918025383257"
+          target=blank>Messenger</a>
+        <p style="display:inline"> eller </p>
+        <a style="display:inline;text-decoration:underline;color:black" href="mailto:lunchdaxuf@gmail.com?">Mail</a>
+      </p>
+    </footer>
+
+  </main>
+
+
+  <script>
+    var db = null;
+    var auth = null;
+    var restUid
+    var isAdmin = false;
+    var isModerator = true;
+    var restRef
+    var restaurant
+    var cards = []
+
+    function setRestUid(uid) {
+      restUid = uid
+      $("#menuScan").bind().unbind().click((e) => {
+        e.preventDefault()
+        window.location = "https://lunchdaxuf.se/menuDecoder?r=" + restUid
+      })
+      return restUid
+    }
+
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+      });
+      return vars;
+    }
+    function getUrlParam(parameter, defaultvalue) {
+      var urlparameter = defaultvalue;
+      if (window.location.href.indexOf(parameter) > -1) {
+        urlparameter = getUrlVars()[parameter];
+      }
+      return urlparameter.replace("%40", "@");
+    }
+
+
+
+
+    function login() {
+      const config = {
+        apiKey: "AIzaSyCShG3XUC85dn1286e--i-wRPdmt3x4Yvo",
+        authDomain: "lunchdax-89c55.firebaseapp.com",
+        databaseURL: "https://lunchdax-89c55.firebaseio.com",
+        projectId: "lunchdax-89c55",
+        storageBucket: "lunchdax-89c55.appspot.com",
+        messagingSenderId: "195085131711"
+      };
+      const app = firebase.initializeApp(config);
+      auth = firebase.auth();
+      db = firebase.firestore();
+      storage = firebase.storage()
+
+      db.settings({
+        timestampsInSnapshots: true
+      });
+
+
+
+      auth.onAuthStateChanged(function (user) {
+        if (!user) {
+          console.log("not logged in");
+          window.location = "https://lunchdaxuf.se/login";
+        }
+        else {
+          restUid = user.uid;
+          var newUid = ""
+          try {
+            newUid = getUrlParam('u');
+
+          } catch{
+
+          }
+          setRestUid(newUid ? newUid : restUid);
+
+          console.log("logged in")
+          getData()
+        }
+      });
+    }
+    var rests
+    function moderator() {
+      isModerator = true;
+      rests = []
+      db.collection('moderators').doc(auth.currentUser.uid).get()
+        .then((doc) => {
+          loadAdminDropdown(doc.data().restaurants)
+        })
+        .catch((err) => { console.log("Error getting documents: ", err); })
+    }
+
+    function admin() {
+      isAdmin = true;
+      rests = []
+      loadAdminDropdown()
+    }
+
+    function mapAdminDropdown() {
+      var str = "";
+      rests.forEach(d => {
+        str += '<tr name="rest" id=' + d.id + ' style="border-bottom:1px solid lightgray;">' +
+          '<td><a class="dropdown-item" href="#">' + d.name + '</a></td>' +
+          '<td>' + d.count + '</td>' +
+          '</tr>'
+      });
+      $('#admin-dropdown').html(str +
+        '<tr>' +
+        '<td><button class="btn btn-outline-success btnRest" type="button" id="addRest">+ Lägg till restaurang</button></td>' +
+        '</tr>')
+
+      $('#admin-dropdown').closest('form').css("display", "block")
+
+      $('#admin-dropdown').find('[name="rest"]').unbind().bind().click((e) => {
+        setRestUid(e.currentTarget.id);
+        getData()
+      })
+      $('#admin-dropdown').find('#addRest').unbind().bind().click((e) => {
+        window.location = 'https://lunchdaxuf.se/skapa_restaurang'
+      })
+    }
+
+    function loadAdminDropdown(restIds = null) {
+      createRestList(restIds, true)
+    }
+
+    function createRestList(restIds = null, mapDropdown = false) {
+      db.collection('cities').get().then((querySnapshot) => {
+        querySnapshot.forEach((city) => {
+          db.collection('cities').doc(city.id).collection('restaurants').get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                var rest = doc.data()
+
+                if ((restIds && restIds.indexOf(doc.id) != -1) || isAdmin) {
+                  var count = 0
+                  if (rest && rest.dishes) {
+                    rest.dishes.forEach(dish => {
+                      if (dish.days) {
+                        dish.days.forEach(served => {
+                          if (served) count++;
+                        });
+                      }
+                    });
+                  }
+                  rests.push({ name: rest.name, count: count, id: doc.id })
+                }
+              })
+              rests.sort((a, b) => b.count - a.count);
+              if (mapDropdown) { mapAdminDropdown() }
+              else {
+                if (rests[0]) {
+                  restUid = rests[0].id
+                  getData()
+                }
+              }
+            })
+            .catch((err) => {
+              console.log("Error getting documents: ", err);
+            })
+        })
+      })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    }
+
+
+
+
+
+
+
+
+    login()
+
+    $(window).load(() => {
+
+
+      $("#mat").click((e) => {
+        StartListModal()
+      })
+
+      $("#rest").click(function () {
+        StartRestModal()
+      });
+
+      $('#signOutBtn').click((e) => {
+        auth.signOut()
+          .then(() => {
+            window.location = 'https://lunchdaxuf.se/login'
+          })
+          .catch((e) => {
+            console.log('error' + e.code)
+          })
+      })
+    })
+  </script>
+  
+  
+  
+  //openings_hours dropdown
+  <script defer async>
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+  
+  
+  //cookieconsent
+  <script>
+    $(window).load(() => {
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#35a8e0"
+          },
+          "button": {
+            "background": "#fff",
+            "text": "#575756"
+          }
+        },
+        "theme": "classic",
+        "position": "bottom-left"
+      })
+    });
+
+
+
+
+    var hasData = false;
+    function checkForRestModalOpener() {
+      if (!hasData && window.location.href.search('#') != -1) {
+        $("#rest").click()
+      }
+      hasData = true;
+    }
+
+    function getData() {
+      db.collection('cities').get().then((querySnapshot) => {
+
+        querySnapshot.forEach((city) => {
+          db.collection('cities').doc(city.id).collection('restaurants').doc(restUid).get()
+            .then((doc) => {
+              restRef = db.collection('cities').doc(city.id).collection('restaurants').doc(restUid)
+
+              db.collection('moderators').doc(auth.currentUser.uid).get()
+                .then(() => {
+                  moderator()
+                })
+                .catch((e) => {
+                  console.log(e)
+                })
+              db.collection('admins').doc(auth.currentUser.uid).get()
+                .then(() => {
+                  admin()
+                })
+                .catch((e) => {
+                })
+
+              if (!doc.data() && isModerator) {
+                db.collection('moderators').doc(auth.currentUser.uid).get()
+                .then((doc2) => {
+                  createRestList(doc2.data().restaurants)
+                })
+                .catch((err) => { console.log("Error getting documents: ", err); })
+              }
+              else { bindData(doc.id, doc.data()) }
+            })
+            .catch((err) => {
+              console.log("No restaurant on this account" + err);
+            })
+        })
+      })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    }
+
+    function bindData(id, data) {
+      restaurant = data;
+      if (restaurant.dishes == null) restaurant.dishes = [];
+      //id, dishId, title, price, description, imgUrl = "../images/placeholder.png"
+      cards = []
+      restaurant.dishes.forEach(dish => {
+        var card = new Card(cards.length, dish.name, dish.price, dish.description, dish.image_url, dish.days, dish.attr)
+        cards.push(card)
+      });
+
+      checkForRestModalOpener()
+
+      reloadCards()
+    }
+
+    function reloadCards() {
+      var days = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]
+      var daysHtml = []
+      for (let i = 0; i < days.length; i++) {
+        const day = days[i]
+
+        var htmlCards = ""
+        for (let x = 0; x < cards.length; x++) {
+          const card = cards[x]
+
+          if (card.days != null && card.days[i]) {
+            htmlCards += card.html
+          }
+        }
+
+
+        daysHtml.push('<div id=' + i + ' class="row">' +
+          '<!-- Rubrik -->' +
+          '<div class="col-sm-4">' +
+          '<h3>' + day + '</h3>' +
+          '</div>' +
+          '<!-- Kort -->' +
+          htmlCards +
+          '<!-- /Kort -->' +
+          '<button class="btn btn-success showListBtn" type="button"> + Lägg till maträtt</button>' +
+          '</div>')
+      };
+      var today = new Date();
+      today.setDate(today.getDate() - 1)
+
+      html = ""
+      for (var i = 0; i < 7; i++) {
+        var newDate = new Date(today.setDate(today.getDate() + 1));
+        html += daysHtml[newDate.getDay()];
+      }
+
+      document.getElementById('cards').innerHTML = html;
+
+      //Kort -> Remove
+      $(".removeBtn").unbind().bind().click((e) => {
+        var id = $(e.currentTarget).closest('form').attr('id')
+        var day = $(e.currentTarget).closest('.row').attr('id')
+
+        cards[id].days[day] = false;
+        restaurant.dishes[id].days[day] = false;
+
+        restRef.update({
+          dishes: restaurant.dishes
+        }).then(() => {
+          console.log('Data saved')
+          getData()
+        }).catch((e) => {
+          console.log('error updating data' + e.code)
+        })
+
+        reloadCards()
+      })
+
+      //Kort -> + lägg till maträtt
+      $(".showListBtn").unbind().bind().click((e) => {
+        var day = $(e.currentTarget).closest('.row').attr('id')
+        StartListModal({
+          day: day
+        })
+      })
+
+      //Kort -> redigera
+      $(".editBtn").unbind().bind().click((e) => {
+        var id = $(e.currentTarget).closest('form').attr('id')
+        var day = $(e.currentTarget).closest('.row').attr('id')
+
+        StartEditFoodModal({
+          day: day,
+          id: id
+        })
+      })
+    }
+
+
+
+
+
+
+
+
+    var timepicker
+    function StartRestModal() {
+      var modal = $("#restaurangModal")
+
+      createDropArea(modal)
+      modal.find('#url').val("")
+      modal.find('#exampleModalLabel').html("Din restaurang")
+
+      modal.find('#name').val(restaurant.name)
+      modal.find('#address').val(restaurant.address)
+
+      modal.find('#picture').css('background-image', 'url(' + getImageUrl(restaurant.image_url) + ')')
+
+
+      var hours = restaurant.opening_hours;
+
+      var days = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"]
+      var html = ""
+      for (let i = 0; i < days.length; i++) {
+        var day = days[i];
+
+        var time = [];
+
+        var first = true;
+
+        var dayId = (i == 6) ? 0 : i + 1
+        if (hours) {
+          hours.forEach(hour => {
+            if (hour.day == dayId && first) {
+              time[0] = hour.open.substring(0, 2) + ":" + hour.open.substring(2, 4)
+              time[1] = hour.close.substring(0, 2) + ":" + hour.close.substring(2, 4)
+              first = false;
+            }
+            else if (hour.day == dayId) {
+              time[2] = hour.open.substring(0, 2) + ":" + hour.open.substring(2, 4)
+              time[3] = hour.close.substring(0, 2) + ":" + hour.close.substring(2, 4)
+            }
+          });
+        }
+        else {
+          time = ["", "", "", ""]
+        }
+
+        function w(value, placeholder) {
+          if (value != null) {
+            return 'value=' + value
+          }
+          return 'placeholder=' + placeholder
+        }
+
+        var string = '<tr>' +
+          '<th data-id=' + dayId + '>' + day.substring(0, 3) + ':</th>' +
+          '<td>' +
+          '<div class="time-picker">' +
+          '<input type="text" name="0" class="time-picker-input"' + w(time[0], 'Öppnar') + '> till ' +
+          '</div> ' +
+          '<div class="time-picker">' +
+          '<input type="text" name="1" class="time-picker-input"' + w(time[1], 'Stänger') + '> och &nbsp' +
+          '</div>' +
+          '<div class="timeDiv" name="blue">' +
+          '<div class="time-picker">' +
+          '<input type="text" name="2" class="time-picker-input"' + w(time[2], 'Öppnar') + '> till ' +
+          '</div>' +
+          '<div class="time-picker">' +
+          '<input type="text" name="3" class="time-picker-input"' + w(time[3], 'Stänger') + '>' +
+          '</div>' +
+          '</div> *' +
+          '</td>' +
+          '</tr>'
+        html += string;
+      };
+
+      modal.find('#timeTable').html(html)
+
+      if (timepicker != null) {
+        if (window.location == 'localhost:5000/user?#') {
+          window.location = 'localhost:5000/user??#'
+        }
+        else if (window.location == 'localhost:5000/user??#') {
+          window.location = 'localhost:5000/user?#'
+        }
+
+        else if (window.location == 'https://lunchdaxuf.se/user?#') {
+          window.location = 'https://lunchdaxuf.se/user??#'
+        }
+        else {
+          window.location = 'https://lunchdaxuf.se/user?#'
+        }
+      }
+      timepicker = new TimePicker($.find('.time-picker-input'), {
+        lang: 'en',
+        theme: 'dark'
+      });
+      timepicker.on('change', function (evt) {
+        var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+        evt.element.value = value;
+      });
+
+      modal.find('.btn-primary').unbind()
+      modal.find('.btn-primary').bind().click((e) => {
+        var tempData = []
+        $('.time-picker-input').each(function () {
+          var val = $(this).val()
+          if (val.length == 4) val = "0" + val
+          if (val.length != 5) return;
+          var time = val.substring(0, 2) + val.substring(3, 5)
+          var day = $(this).closest('tr').find('th').data('id')
+
+
+          tempData.push({ day: day, name: $(this).attr('name'), time: time })
+        })
+
+        tempData.sort((a, b) => a.day - b.day || a.name - b.name);
+
+        var newHours = [];
+        var tempHour = { day: null, open: null, close: null };
+
+        tempData.forEach(x => {
+          tempHour.day = x.day;
+          if (x.time != "") {
+            if (x.name == "0") tempHour.open = x.time;
+            else if (x.name == "1") { tempHour.close = x.time; newHours.push(jQuery.extend(true, {}, tempHour)) }
+            else if (x.name == "2") tempHour.open = x.time;
+            else if (x.name == "3") { tempHour.close = x.time; newHours.push(jQuery.extend(true, {}, tempHour)) }
+          }
+        });
+
+        url = ""
+        if (modal.find('canvas').data('url')) {
+          url = modal.find('canvas').data('url')
+        }
+
+        restRef.update({
+          name: modal.find('#name').val(),
+          address: modal.find('#address').val(),
+          image_url: url,
+          opening_hours: newHours
+        })
+          .then(() => {
+            console.log('Data saved')
+            modal.find('canvas').data('url', "")
+          })
+          .catch((e) => {
+            console.log('error updating data' + e.code)
+          })
+
+        modal.modal('hide')
+      })
+
+      modal.modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+    }
+
+
+
+    function StartListModal(settings = {}) {
+
+      var day = nonNull(settings.day, false);
+      var open = nonNull(settings.day, true);
+
+      var modal = $("#addFoodModal")
+      modal.find('#exampleModalLabel').html("Dina maträtter")
+
+
+      var html = ""
+      cards.forEach(card => {
+        html += '<div id=' + card.id + ' class="foodList">' +
+          '<div class="matContent">' +
+          '<img id="foodPic" src=' + getImageUrl(card.image_url) + '>' +
+          '<div class="foodName">' +
+          '<h5>' + card.title + '</h5>' +
+          '</div>' +
+          '<div class="foodPrice">' +
+          '<h5>' + card.price + 'kr</h5>' +
+          '</div>' +
+          '<div class="foodDesc">' +
+          '<p>' + card.description + '</p>' +
+          '</div>' +
+          '</div>' +
+          '<div class="restDelet">' +
+          '<img src="../images/delete.png" class="deletDis">' +
+          '</div>' +
+          '</div>'
+      });
+      html += '<div class="modal-footer">' +
+        '<button class="btn btn-success btnFood" type="button" id="addMeal">+ Skapa en ny rätt</button>' +
+        '</div>'
+      modal.find('#content').html(html)
+
+
+      //delet
+      modal.find('.restDelet').unbind().bind().click((e) => {
+        var id = $(e.currentTarget).closest('.foodList').attr('id')
+
+        cards.splice(id, 1)
+        StartListModal({ day: day, open: false })
+
+        restaurant.dishes.splice(id, 1);
+        restRef.update({
+          dishes: restaurant.dishes
+        }).then(() => {
+          console.log('Data saved')
+          getData()
+        }).catch((e) => {
+          console.log('error updating data' + e.code)
+        })
+        var ref = storage.ref()
+        ref.child('images/' + restUid + '/' + id).delete()
+          .then(() => {
+
+          })
+          .catch((e) => {
+            console.log('error updating data' + e.code)
+          })
+      })
+
+
+      //Kort -> + -> 
+      modal.find('.matContent').unbind().bind().click((e) => {
+        var id = $(e.currentTarget).closest('.foodList').attr('id')
+
+        if (day) {
+          restaurant.dishes[id].days[day] = true;
+          restRef.update({
+            dishes: restaurant.dishes
+          }).then(() => {
+            console.log('Data saved')
+            getData()
+          }).catch((e) => {
+            console.log('error updating data' + e.code)
+          })
+        }
+        else {
+          StartEditFoodModal({
+            id: id
+          })
+        }
+        modal.modal('hide')
+      })
+
+      //Kort -> skapa ny rätt
+      modal.find(".btn-success").unbind().bind().click((e) => {
+        $("#addFoodModal").modal('hide')
+
+        StartEditFoodModal({
+          day: day,
+          clear: true
+        })
+      })
+
+      modal.modal()
+    }
+
+
+
+
+
+
+
+    function StartEditFoodModal(settings = {}) {
+      var day = nonNull(settings.day, false);
+      var id = nonNull(settings.id, cards.length);
+
+      var clear = nonNull(settings.clear, false);
+
+      var modal = $("#matModal")
+
+      createDropArea(modal, id)
+
+      if (!clear) {
+        modal.find('#name').val(cards[id].title)
+        modal.find('#price').val(cards[id].price)
+        modal.find('#description').val(cards[id].description)
+        modal.find('#picture').css('background-image', 'url(' + getImageUrl(cards[id].image_url) + ')')
+        modal.find('#exampleModalLabel').html("Redigera din maträtt")
+
+
+        modal.find('#veg').prop('checked', cards[id].getAttr().veg)
+        modal.find('#vegan').prop('checked', cards[id].getAttr().vegan)
+        modal.find('#gluten').prop('checked', cards[id].getAttr().gluten)
+        modal.find('#laktos').prop('checked', cards[id].getAttr().laktos)
+      }
+      else {
+        modal.find('#name').val("")
+        modal.find('#price').val("")
+        modal.find('#description').val("")
+        modal.find('#picture').css('background-image', 'url(' + getImageUrl("") + ')')
+        modal.find('#exampleModalLabel').html("Skapa en maträtt")
+
+
+        modal.find('#veg').prop('checked', false)
+        modal.find('#vegan').prop('checked', false)
+        modal.find('#gluten').prop('checked', false)
+        modal.find('#laktos').prop('checked', false)
+      }
+      var canvas = modal.find('canvas')[0]
+      const context = canvas.getContext('2d');
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      modal.find('#url').val("")
+
+      modal.find('.btn-primary').unbind().bind().click((e) => {
+        var days = [false, false, false, false, false, false, false]
+        if (!clear) days = cards[id].days
+
+        if (day) days[day] = true;
+
+        url = ""
+        if (!clear) url = cards[id].image_url
+        if (modal.find('canvas').data('url')) {
+          url = modal.find('canvas').data('url')
+        }
+
+        var dish = {
+          name: modal.find('#name').val(),
+          price: modal.find('#price').val().replace(/\D/g, ''),
+          description: modal.find('#description').val(),
+          image_url: url,
+          days: days,
+
+          attr: {
+            veg: modal.find('#veg').prop('checked'),
+            vegan: modal.find('#vegan').prop('checked'),
+            gluten: modal.find('#gluten').prop('checked'),
+            laktos: modal.find('#laktos').prop('checked')
+          }
+        }
+
+
+        if (!clear) restaurant.dishes[id] = dish;
+        else restaurant.dishes.push(dish)
+
+
+        restRef.update({
+          dishes: restaurant.dishes
+        }).then(() => {
+          console.log('Data saved')
+          modal.find('canvas').data('url', "")
+          getData()
+        }).catch((e) => {
+          console.log('error updating data' + e.code)
+        })
+
+        modal.modal('hide')
+      })
+
+      $("#matModal").modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+    }
+  </script>
+</body>
+
+</html>

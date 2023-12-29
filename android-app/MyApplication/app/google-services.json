@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "195085131711",
+    "firebase_url": "https://lunchdax-89c55.firebaseio.com",
+    "project_id": "lunchdax-89c55",
+    "storage_bucket": "lunchdax-89c55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195085131711:android:4821474697879e18",
+        "android_client_info": {
+          "package_name": "com.lunchdaxuf.theod.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195085131711-cc03mnr0bq04imanvo3cs9nusq8425oh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lunchdaxuf.theod.myapplication",
+            "certificate_hash": "31bcca4a7306586e2be32210fd3918ec7444c80e"
+          }
+        },
+        {
+          "client_id": "195085131711-m22jpuscgq50ffq8b6e2gq4hq9fl1g7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCShG3XUC85dn1286e--i-wRPdmt3x4Yvo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195085131711-m22jpuscgq50ffq8b6e2gq4hq9fl1g7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

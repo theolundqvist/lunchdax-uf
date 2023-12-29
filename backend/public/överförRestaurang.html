@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Animated login form</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script>
+  <script>
+      // Initialize Firebase
+      const config = {
+      apiKey: "AIzaSyCShG3XUC85dn1286e--i-wRPdmt3x4Yvo",
+      authDomain: "lunchdax-89c55.firebaseapp.com",
+      databaseURL: "https://lunchdax-89c55.firebaseio.com",
+      projectId: "lunchdax-89c55",
+      storageBucket: "lunchdax-89c55.appspot.com",
+      messagingSenderId: "195085131711"
+    };
+    const app = firebase.initializeApp(config);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    </script>
+</head>
+<body>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if(user){
+                console.log("logged in");
+                //radera allt på
+                /*
+                db.collection('cities').doc('Halmstad').collection('restaurants').doc('wVQRJFdCkefU7oLO6Zb9D1iPSnj2').set({name:"admin"})
+                
+                */
+
+                //överför
+                /*
+                db.collection('cities').doc('Halmstad').collection('restaurants').doc('wVQRJFdCkefU7oLO6Zb9D1iPSnj2').get()
+                .then((doc)=>{
+                    console.log(doc.data())
+                    
+                    db.collection('cities').doc('Halmstad').collection('restaurants').doc('3ezR9abB0TZXi4UVpWnoHvM2u1t1').set(doc.data())
+                    .then((a)=>{
+                        console.log(a)
+                    })
+                    .catch((a)=>{
+                        console.log(a)
+                    })
+                    
+
+                })
+                */
+            }
+        });
+    </script>
+</body>

@@ -1,0 +1,9 @@
+diff a/lunchdax/lib/ui/cardRow.dart b/lunchdax/lib/ui/cardRow.dart	(rejected hunks)
+@@ -49,6 +49,7 @@
+       ),
+     ],
+   );
++  
+ }
+ 
+ Widget bottomRow(BuildContext c) {

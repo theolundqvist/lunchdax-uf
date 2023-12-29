@@ -1,0 +1,185 @@
+
+<html>
+
+    <head>
+            
+        <meta charset="UTF-8">
+        <title>Animated login form</title>
+        
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        
+        
+        <style>
+            body{
+                display:flex;
+                min-height: 100vh;
+            }
+
+            .progress{
+                width: 100%;
+                margin-bottom: 10px;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+            #drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 20px;
+            width: 480px;
+            height: auto;
+            font-family: sans-serif;
+            margin: auto;
+            padding: 20px;
+            }
+            #drop-area.highlight {
+            background: purple;
+            }
+            p {
+            margin-top: 0;
+            }
+            .my-form {
+            margin-bottom: 10px;
+            }
+            .button {
+            display: inline-block;
+            padding: 10px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            }
+            .button:hover {
+            background: #ddd;
+            }
+            #fileElem {
+            display: none;
+            }
+        </style>
+
+    </head>
+    
+<body>
+
+    <label class="button" onclick="readClipboard()">upload from copied url</label>
+    <div id="drop-area">
+        <form class="my-form">
+          <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+          <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+          <label class="button" for="fileElem">Select some files</label>
+        </form>
+
+            <progress id="progress" class=progress value="0" max-value="100"></progress><br><br>
+            <canvas id="canvas"></canvas>
+            <div id="sourcediv" style="display:none;">
+            <img id="source" src="" crossorigin>
+            </div>
+
+
+      </div>
+
+    
+    
+
+    <script type="text/javascript" src='../js/jquery.js'></script>
+    <script type="text/javascript" src='../js/cropper.js'></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-storage.js"></script>
+
+
+
+
+    <script>
+        // Initialize Firebase
+        const config = {
+            apiKey: "AIzaSyCShG3XUC85dn1286e--i-wRPdmt3x4Yvo",
+            authDomain: "lunchdax-89c55.firebaseapp.com",
+            databaseURL: "https://lunchdax-89c55.firebaseio.com",
+            projectId: "lunchdax-89c55",
+            storageBucket: "lunchdax-89c55.appspot.com",
+            messagingSenderId: "195085131711"
+        };
+        const app = firebase.initializeApp(config);
+        const storageRef = firebase.storage().ref();
+
+        let dropArea = document.getElementById('drop-area')
+        ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false)
+        })
+
+        function preventDefaults (e) {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+        ;['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false)
+        })
+        ;['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false)
+        })
+
+        function highlight(e) {
+            dropArea.classList.add('highlight')
+        }
+
+        function unhighlight(e) {
+            dropArea.classList.remove('highlight')
+        }
+
+        dropArea.addEventListener('drop', handleDrop, false)
+
+        function handleDrop(e) {
+            let dt = e.dataTransfer
+            let files = dt.files
+
+            handleFiles(files)
+        }
+
+
+
+        function readClipboard(){
+
+            navigator.clipboard.readText()
+            .then(url => {
+
+            var source = document.getElementById('source')
+            var canvas = document.getElementById('canvas')
+            var cropper = new Cropper(source, canvas);
+
+                cropper.crop(url,
+                {
+                    name: "files[0].name",
+                    size: 240,
+                    uploadSize: 480,
+                    upload: false
+                });
+            });
+        }
+
+        function handleFiles(files) {
+            if(!files[0].type.match(/image.*/)){
+                console.log("The dropped file is not an image: ", files[0].type);
+                return;
+            }
+            var source = document.getElementById('source')
+            var canvas = document.getElementById('canvas')
+            var cropper = new Cropper(source, canvas);
+
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function(){
+                cropper.crop(reader.result,
+                    {
+                        name: files[0].name,
+                        size: 240,
+                        uploadSize: 480,
+                        upload: true
+                    });
+            }
+        }
+      </script>
+</body>
+
+</html>

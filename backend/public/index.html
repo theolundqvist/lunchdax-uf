@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3CZPRL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-W3CZPRL');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131021626-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131021626-1');
+  </script>
+  <title>Lunchdax UF</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <script src="../js/jquery.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU'
+    crossorigin='anonymous'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="../images/loggaikon.ico" type="icon">
+
+  <script src="../js/sweetalerts.js"></script>
+  
+  <script src='https://www.google.com/recaptcha/api.js?render=explicit' async defer></script>
+  
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-functions.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCShG3XUC85dn1286e--i-wRPdmt3x4Yvo",
+      authDomain: "lunchdax-89c55.firebaseapp.com",
+      databaseURL: "https://lunchdax-89c55.firebaseio.com",
+      projectId: "lunchdax-89c55",
+      storageBucket: "lunchdax-89c55.appspot.com",
+      messagingSenderId: "195085131711"
+    };
+    firebase.initializeApp(config);
+    var functions = firebase.functions();
+  </script>
+
+
+  <script src='../js/mailer.js'></script>
+
+</head>
+<style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body, html {
+    height: 100%;
+    line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+    background-position: center;
+    background-size: cover;
+    background-image: url("../images/rsz_frontpage.jpg");
+    min-height: 100%;
+}
+.main-logo {
+    max-width: 490px;
+}
+.main-logo-small {
+    max-width: 300px;
+}
+.w3-bar .w3-button {
+    padding: 16px;
+}
+.error{
+  border-color: red !important;
+}
+</style>
+
+
+
+
+<body>
+
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-card" id="myNavbar">
+      <a href="#home" class="w3-bar-item w3-button w3-wide"><img src="../images/rsz_logga2ktransparent.png" style="width:100px"></a>
+      <!-- Right-sided navbar links -->
+      <div class="w3-right w3-hide-small">
+        <a href="#about" class="w3-bar-item w3-button"><i class="fas fa-info-circle"></i> OM OSS</a>
+        <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+        <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> KONTAKT</a>
+        <a href="https://lunchdaxuf.se/login" class="w3-bar-item w3-button"><i class="fas fa-sign-in-alt"></i> LOGGA IN</a>
+      </div>
+      <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Sidebar on small screens when clicking the menu icon -->
+  <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none"
+    id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Stäng ×</a>
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">OM OSS</a>
+    <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">KONTAKT</a>
+    <a href="https://lunchdaxuf.se/login" class="w3-bar-item w3-button">LOGGA IN</a>
+  </nav>
+
+  <!-- Header with full-height image -->
+  <header class="bgimg-1 w3-display-container" id="home">
+    <div class="w3-display-left w3-text-white" style="padding:48px">
+      <span class="w3-jumbo w3-hide-small"><img class="main-logo" src="../images/rsz_logga2ktransparentvit.png"></span><br>
+      <span class="w3-xxlarge w3-hide-large w3-hide-medium"><img class="main-logo-small" src="../images/rsz_logga2ktransparent.png"></span><br>
+      <span class="w3-large">Lunchdax är inget hjälpmedel, det är en lösning.</span>
+      <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Ladda ner här</a></p>
+    </div>
+    <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+      <a href="https://www.facebook.com/uflunchdax/" target="blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+      <!-- <i class="fa fa-instagram w3-hover-opacity"></i> -->
+    </div>
+  </header>
+
+  <!-- Promo Section - Download -->
+  <div class="w3-container w3-light-grey" style="padding:50px 16px" id="about">
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <h3>Ladda ner vår app!</h3>
+        <h5>Se vad restauranger i din närhet har på dagens lunchmeny och bestäm enkelt vad du ska äta idag.</h5><br>
+        <h3>iOS:</h3>
+        <p><a href="https://itunes.apple.com/app/id1445467268"><img src="../images/app_store.png" style="width:250px"></a></p>
+        <h3>Android:</h3>
+        <p><a href="https://play.google.com/store/apps/details?id=com.lunchdaxuf.theod.myapplication"><img src="../images/googleplay.png" style="width:250px"></a></p>
+      </div>
+      <div class="w3-col m6">
+        <img class="w3-image w3-round-large" src="../images/iphonedesk.jpg" width="750" height="471">
+      </div>
+    </div>
+  </div>
+  
+  <!-- About Section -->
+  <div class="w3-container" style="padding:128px 16px">
+    <h3 class="w3-center">OM OSS</h3>
+    <!-- <p class="w3-center w3-large">Key features of our company</p> -->
+    <div class="w3-row-padding w3-center" style="margin-top:64px">
+      <div class="w3-quarter">
+        <i class="fas fa-building w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Vårt företag</p>
+        <p>Lunchdax UF är ett nystartat UF-företag som utvecklar en applikation för ios och android som kallas för
+          "Lunchdax". Vi strävar efter kvalitet, funktionalitet, professionalism och ett lyckat UF-år.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fas fa-mobile-alt w3-margin-bottom w3-jumbo w3-center"></i>
+        <p class="w3-large">Vår produkt</p>
+        <p>"Lunchdax" skapades för att göra det så lätt som möjligt för dig att se vad som finns att äta i ditt område.
+          Allt för att du enkelt ska kunna hitta vad du vill äta, när du vill äta.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fas fa-calendar-check w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Vår tjänst</p>
+        <p>Via vår app kan restauranger enkelt få bra och kontinuerlig marknadsföring och flöde till verksamheten
+          eftersom det blir lätt för användare att hitta nya ställen att äta på.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Support</p>
+        <p>Om du stöter på problem eller har några frågor kan du kontakta oss via <a style="color:black;text-decoration:underline"
+            href="http://m.me/1915918025383257" target=blank>Messenger</a> eller <a style="display:inline;text-decoration:underline;color:black"
+            href="mailto:lunchdaxuf@gmail.com?">Mail</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promo Section - "We know design" -->
+  <div class="w3-container w3-light-grey" style="padding:128px 16px">
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <h3>Vill du synas på vår app?</h3>
+        <h5>Fyll i formuläret nedan för att ansluta dig till vår tjänst.</h5><br>
+        <p><a class="w3-button w3-black" role="button" data-toggle="modal" data-target="#registerModal" id="register"
+            data-whatever="@getbootstrap">Registrera din restaurang här</a></p>
+      </div>
+      <div class="w3-col m6">
+        <img class="w3-image w3-round-large" src="../images/rsz_logga2ktransparent.png" width="700" height="394">
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="w3-container" style="padding:128px 16px" id="team">
+    <h3 class="w3-center">VÅRT TEAM</h3>
+    <p class="w3-center w3-large">Personerna bakom Lunchdax UF</p>
+    <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <div class="w3-container">
+            <h3>Theodor Lundqvist</h3>
+            <p class="w3-opacity">VD, Produktionsansvarig</p>
+            <p>Ansvarig för produktionsframställning och bestämmer över vad som ska göras för att framställa vår
+              produkt.</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <div class="w3-container">
+            <h3>Sebastian Eriksson</h3>
+            <p class="w3-opacity">Ekonomi & Försäljning</p>
+            <p>Ansvar att hålla koll på alla inkomster och utgifter som sker inom företaget. Bestämmer även över
+              företagets försäljningstillfällen och är med vid säljtillfällena.</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <div class="w3-container">
+            <h3>Gabriel Bexelius</h3>
+            <p class="w3-opacity">Marknadsföring & Grafisk profil</p>
+            <p>Ansvarar för hur företaget marknadsförs och hur det ska gå till. Ansvarar dessutom över företagets
+              grafiska profil t.ex. logotyper och denna hemsida.</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <div class="w3-container">
+            <h3>Agaton Sturesson</h3>
+            <p class="w3-opacity">Praktikanten</p>
+            <p>Hjälper till med uppgifter där det behövs extra stöd och följer även med ut på säljtillfällen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promo Section "Statistics" -->
+  <!-- <div class="w3-container w3-row w3-center w3-padding-64" style="background-color:#35A8E0;">
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">14+</span>
+    <br>Partners
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">55+</span>
+    <br>Nedladdningar
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">89+</span>
+    <br>Betyg
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">???</span>
+    <br>*empty*
+  </div>
+</div> -->
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+    <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption" class="w3-opacity w3-large"></p>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+    <h3 class="w3-center">KONTAKTA OSS</h3>
+    <p class="w3-center w3-large">Problem eller frågor? Skicka oss ett meddelande:</p>
+    <div style="margin-top:48px">
+      <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Halmstad, SE</p>
+      <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Telefon: +46 72-234 06 28</p>
+      <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: lunchdaxuf@gmail.com</p>
+      <br>
+      <form name="form2">
+        <p><input class="w3-input w3-border" type="text" placeholder="Namn" required name="name"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="mail"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Meddelande" required name="message"></p>
+        <p>
+          <button class="w3-button w3-black submitBtn2" type="button" data-recaptcha="lower">
+            <i class="fa fa-paper-plane"></i> SKICKA
+          </button>
+          <div id="recaptcha_lower"></div>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrera din restaurang</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form name="form1">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Restaurangnamn:*</label>
+              <input type="text" class="form-control" name="rest">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Gatuadress:*</label>
+              <input type="text" class="form-control" name="address">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Ditt namn:*</label>
+              <input type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Din mailadress:*</label>
+              <input type="mail" class="form-control" name="mail">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Ditt telefonnummer:*</label>
+              <input type="tel" class="form-control" name="tel">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Övriga frågor:</label>
+              <textarea class="form-control" name="message"></textarea>
+            </div>
+            <p>Fält med * är obligatoriska</p>
+            <div id="recaptcha_global"></div>
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Stäng</button>
+            <button type="button" class="btn btn-primary submitBtn1" data-recaptcha="global">Skicka</button>
+            
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-64">
+    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Tillbaka till toppen</a>
+    <div class="w3-xlarge w3-section">
+      <a href="https://www.facebook.com/uflunchdax/" target="blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+      <!-- <i class="fa fa-instagram w3-hover-opacity"></i> -->
+    </div>
+  </footer>
+
+  <script>
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+
+
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
+
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'block';
+      }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+      mySidebar.style.display = "none";
+    }
+
+    $(window).load(function () {
+
+      $("#register").click(function () {
+        $("#registerModal").modal({
+          backdrop: 'static',
+          keyboard: false
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

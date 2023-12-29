@@ -1,0 +1,460 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="icon" href="../images/loggaikon.ico" type="icon">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/userstyle.css">
+  <script src="../js/jquery.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script src="../js/sweetalerts.js"></script>
+  <!--Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-storage.js"></script>
+
+  <style>
+    html {
+        background-image: url("../images/iphonedesk.jpg");
+        background-image:no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    body {
+        width: 40% !important;
+        margin: auto;
+        padding-top: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        overflow: auto;
+        height: 85%;
+        max-height: 800px;
+        min-height: 555px !important;
+        position: relative;
+        max-width: 500px;
+
+    }
+    h1 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 42px;
+        text-align: center;
+        width: 100%;
+        display: table-row; vertical-align: top;
+    }
+    .checkboxtext
+    {
+        font-size: 110%;
+        display: inline;
+        text-align: left;
+        margin-left: 0px;
+    }
+    .inputs2{
+      margin:auto; 
+      width:100%; 
+      text-align:center; 
+      position:absolute; 
+      bottom: 0;
+      display: table-row; vertical-align: middle;
+
+    }
+    #ok{
+      border-radius: 0px 0px 10px 10px;
+    }
+    textarea{
+
+      width:100%; 
+      overflow: auto; 
+      align-items: stretch;
+      align-self: center;
+      margin: auto;
+      line-height: 20px;
+    }
+    .error{
+  border-color: red !important;
+}
+footer {
+  display: block;
+  padding-top: 50px;
+  text-align: center;
+  color: #ddd;
+  font-weight: normal;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+  font-size: 0.8em;
+}
+footer a, footer a:link {
+  color: #fff;
+  text-decoration: none;
+}
+</style>
+
+</head>
+
+<body>
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script defer async>
+
+    setTimeout(function () {
+
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/sv_SE/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    }, 0);
+  </script>
+    <!-- Your customer chat code -->
+    <div class="fb-customerchat" attribution=setup_tool page_id="1915918025383257" theme_color="#009de3"
+    logged_in_greeting="Frågor? Ställ dem här!" logged_out_greeting="Frågor? Ställ dem här!">
+  </div>
+
+
+  <h1 >Kopiera in hela din meny här:</h1>
+  <div class="inputs" style="margin:auto; width:90%; position:absolute; top:30%; left:0%; right:0%; bottom:7%; margin-bottom: 10px; display: table-row; vertical-align: middle;">
+  <textarea style="position:absolute; top:0; left:0; right:0; bottom:0; padding:1em" class="form-control" id="text" placeholder='Exempel nedan:
+----------------
+Måndag
+Korvstroganoff med ris
+  
+Tisdag
+Gulaschgryta på högrev/
+Pasta Bolognese
+
+Onsdag
+Grillad kycklingfilé/99
+----------------
+EN rätt kommer att tilldelas måndag,
+TVÅ rätter kommer att tilldelas tisdag,
+EN rätt med priset 99kr kommer att tilldelas onsdag,
+priset på resten av rätterna bestäms efter avkodning.
+'></textarea>
+  </div>
+  <div class="inputs2">
+  <button class="btn btn-primary" id="ok" type="button" style="display: inline-block; width: 100%;">OK</button>
+  </div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style='min-width:500px;'>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Dina rätter kommer att läggas till</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body noPadding" id="content">
+          <div class="name" style="margin-bottom:10px">
+              <h5 style="text-align:left; width: 30%">Namn  </h5>
+              <input type="textbox" class="textbox1" id="namn" style="margin-right: 0px; box-sizing: border-box" placeholder="ex. Buffé"></input>
+            </div>
+            <div class="checkboxinput" style="display:inline-table; margin-left:5px;">
+              <input type="checkbox" id="autoname" style="margin-top: 0px; margin-bottom: 30px; transform: scale(2); margin-right: 10px;"></input>
+              <span class="checkboxtext" style="font-style:italic;">Auto (Första ordet)</span>
+              </div>
+
+          <div class="price" style="margin-bottom:10px"> 
+              <h5 style="text-align:left">Pris  </h5>
+              <input type="textbox" class="textbox2" id="pris" style="margin-right: 0px; box-sizing: border-box" placeholder="ex. 99"></input>
+          </div>
+          <div class="checkboxinput" style="display:inline-table;margin-left:5px">
+          <input type="checkbox" id="checkbox" style="margin-top: 0px; margin-bottom: 15px; transform: scale(2); margin-right: 10px;"></input>
+          <span class="checkboxtext" style="font-style:italic;">Radera tidigare rätter</span>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="confirm" type="button" style="display: inline-block; width: 100%;">OK</button>
+
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+
+
+
+
+
+  const config = {
+    apiKey: "AIzaSyCShG3XUC85dn1286e--i-wRPdmt3x4Yvo",
+    authDomain: "lunchdax-89c55.firebaseapp.com",
+    databaseURL: "https://lunchdax-89c55.firebaseio.com",
+    projectId: "lunchdax-89c55",
+    storageBucket: "lunchdax-89c55.appspot.com",
+    messagingSenderId: "195085131711"
+  };
+  const app = firebase.initializeApp(config);
+  auth = firebase.auth();
+  db = firebase.firestore();
+  storage = firebase.storage()
+
+  db.settings({
+    timestampsInSnapshots: true
+  });
+
+
+  var restId
+
+  auth.onAuthStateChanged(function (user) {
+    if (!user) {
+      console.log("not logged in");
+      window.location = "https://lunchdaxuf.se/login";
+    }
+    else {
+      console.log("logged in")
+      restId = getRestId()
+    }
+  });
+
+  
+  var dishes = []
+
+  var autoName = false
+
+  $('#ok').click((e) => {
+    e.preventDefault()
+
+      var days = ["SÖNDAG", "MÅNDAG", "TISDAG", "ONSDAG", "TORSDAG", "FREDAG", "LÖRDAG"]
+      
+
+      var text = $("#text").val()
+      text = text.replace(/\./g, ". ") //Add space after dot
+      var upperCase = text.toUpperCase()
+
+      var descriptions = []
+      days.forEach((day, i)=> {
+        var first = upperCase.search(day)
+        if (first != -1) {
+
+          var closest = 9999999
+          var secPos = text.length
+          days.forEach(day => {
+            var sec = upperCase.search(day)
+            if(sec > first){
+              if(sec - first < closest){
+                closest = sec - first
+                secPos = sec;
+              }
+            }
+          })
+          console.log(day + ": " + first + " -> " + secPos + "   => " + text.slice(first + day.length, secPos))
+          var str = text.slice(first + day.length, secPos)
+          if (str.length > 5) {
+            if(str[str.length-1] != '/') str += '/'
+
+            var bryt = str.split('/')
+            if (bryt[1]) {
+              autoName = true
+              var lastPLength = ""
+              for (let x = 1; x < bryt.length; x++) {
+                var p = bryt[x].slice(0, 3).match(/[+-]?\d+(?:\.\d+)?/g) //Get only numbers
+                if (p) p = p[0]
+                if (p < 10) p = ""
+                var d = bryt[x - 1].slice(lastPLength, bryt[x - 1].length)
+                lastPLength = p.length
+
+                if(d) descriptions.push({ day: i, desc: d, price: p })
+              }
+            }
+            else {
+              autoName = false
+              var newStr = str.replace(/\//g,'')  //remove '/' at end if present
+              descriptions.push({ day: i, desc: newStr })
+            }
+          }
+        }
+      })
+
+      dishes = []
+
+      descriptions.forEach(desc => {
+        var days = [false, false, false, false, false, false, false]
+        days[desc.day] = true
+
+        var p = (desc.price != null) ? desc.price.toString() : null
+        var d = desc.desc.replace(/(\r\n|\n|\r)/gm, ""); //Remove all line breaks,
+        d = trimSpaces(d) //delete spaces
+        d = sentenceCase(d, true)
+        if(d){
+          var dish = {
+            name: null,
+            price: p,
+            description: d, 
+            image_url: "",
+            days: days,
+
+            attr: {
+              veg: false,
+              vegan: false,
+              gluten: false,
+              laktos: false
+            }
+          }
+          dishes.push(dish)
+        }
+      });
+
+      if (dishes.length > 0) {
+        $('#checkbox').prop('checked', true)
+        $('#autoname').prop('checked', autoName)
+        $('#confirmModal').modal('show')
+        console.log(dishes)
+      }
+      else {
+        var link = document.createElement("a")
+        link.href = "https://lunchdaxuf.se/#contact"
+        link.text = "-> https://lunchdaxuf.se/#contact <-"
+        link.target = "blank"
+        swal({
+          text: 'Menyn kunde inte formateras, läs instruktionerna igen eller kontakta oss på:',
+          content: link,
+          button: true,
+          closeOnClickOutside: true,
+          closeOnEsc: true,
+          icon: "error",
+        });
+      }
+
+
+    })
+
+    $('#confirm').click((e) => {
+      if (!restId) return
+      e.preventDefault()
+
+      var name = $('#namn').val()
+      var price = $('#pris').val().replace(/\D/g, '')
+      console.log(price)
+
+
+      if(!name) name = "Buffé"
+      if(!price) price  = "99"
+
+      var autoname = $('#autoname').prop('checked')
+      dishes.forEach(dish => {
+        if(autoname) dish.name = dish.description.split(' ')[0]
+        else dish.name = name
+        dish.name = sentenceCase(dish.name, true)
+        if(!dish.price) dish.price = price
+      });
+
+      var removeOld = $('#checkbox').prop('checked')
+
+      console.log(dishes)
+
+      db.collection('cities').get().then((querySnapshot) => {
+        querySnapshot.forEach((city) => {
+          db.collection('cities').doc(city.id).collection('restaurants').doc(restId).get()
+            .then((doc) => {
+              restRef = db.collection('cities').doc(city.id).collection('restaurants').doc(restId)
+
+
+              if (!removeOld) {
+                var oldDishes = doc.data().dishes
+                if (oldDishes) {
+                  oldDishes.forEach(dish => {
+                    dish.days = [false, false, false, false, false, false, false]
+                  });
+                }
+                oldDishes.forEach(oldD => {
+                  dishes.push(oldD)
+                });
+              }
+
+              restRef.update({
+                dishes: dishes
+              })
+                .then(() => {
+                  swal({
+                    text: 'Din meny har uppdaterats, vi dirigerar om dig...',
+                    button: false,
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    icon: "success",
+                  });
+                  setTimeout(()=>{
+                    window.location = "https://lunchdaxuf.se/user?u=" + restId
+                  },1500)
+                  console.log('done')
+                })
+
+                .catch((e) => {
+                  console.log(e.code)
+                })
+            })
+            .catch((e) => {
+              console.log(e.code)
+            })
+        })
+          .catch((e) => {
+            console.log(e.code)
+          })
+      })
+        .catch((e) => {
+          console.log(e.code)
+        })
+    })
+
+    function sentenceCase(input, lowercaseBefore) {
+        input = ( input === undefined || input === null ) ? '' : input;
+        if (lowercaseBefore) { input = input.toLowerCase(); }
+        return input.toString().replace( /(^|\. *)([a-z])/g, function(match, separator, char) {
+            return separator + char.toUpperCase();
+        });
+    }
+
+    function getRestId() {
+      restUid = auth.currentUser.uid;
+      var newUid = ""
+      try {
+        newUid = getUrlParam('r');
+
+      } catch{
+
+      }
+      return newUid ? newUid : restUid;
+    }
+
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+      });
+      return vars;
+    }
+    function getUrlParam(parameter, defaultvalue) {
+      var urlparameter = defaultvalue;
+      if (window.location.href.indexOf(parameter) > -1) {
+        urlparameter = getUrlVars()[parameter];
+      }
+      return urlparameter.replace("%40", "@")
+    }
+
+
+    function trimSpaces(s) {
+      s = s.replace(/(^\s*)|(\s*$)/gi, "");
+      s = s.replace(/[ ]{2,}/gi, " ");
+      return s.replace(/\n /, "\n");
+    }
+
+
+  </script>
+

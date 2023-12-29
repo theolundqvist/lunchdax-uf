@@ -1,0 +1,43 @@
+{
+  "hosting": {
+    "public": "public",
+    "rewrites": [{
+      "source":"/login",
+      "destination":"/Restaurant/login/login.html"
+    },{
+      "source":"/createPass",
+      "destination":"/Restaurant/login/createPass.html"
+    },{
+      "source":"/upload",
+      "destination":"/Restaurant/uploadImageTest/upload.html"
+    },{
+      "source":"/user",
+      "destination":"/Restaurant/user/user.html"
+    },{
+      "source":"/app-policy",
+      "destination":"/privacy_policy.html"
+    },{
+      "source": "/newMessage",
+      "function": "newMessage"
+    },{
+      "source":"/menuDecoder",
+      "destination":"/Restaurant/user/menuDecoder.html"
+    },{
+      "source":"**",
+      "destination":"/index.html"
+    }],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls" : "true",
+    "headers": [
+      { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
+    ]
+  },
+  "functions": {
+
+  }
+
+}

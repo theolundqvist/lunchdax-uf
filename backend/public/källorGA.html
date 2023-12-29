@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KällorGA</title>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="BrowserHistory.json"></script>
+<style>
+
+body,html{
+    height: 100%
+}
+
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+</style>
+</head>
+
+<body>
+    <div id="myProgress">
+        <div id="myBar">10%</div>
+    </div>
+    <p id="text"></p>
+    <script>
+        var data = JSON.parse(BrowserHistory)
+
+        var keywords = ['firebase', 'xcode', 'swift', 'javascript', 'android studio','w3schools','xamarin','github']
+        var blacklistedURLKeywords = ['chrome:', 'www.google', 'console.firebase', 'lunchdaxuf.se','sweclockers','prisjakt']
+        var blacklistedKeywords = ['sök på google', 'google – min aktivitet', 'trello','unikum', 'python', 'historik','flutter','dart', 'asus']
+        var searchResponse = []
+
+        searchHistory(data)
+
+        function searchHistory(obj) {
+            var history = obj["Browser History"]
+            historyLength = history.length
+            history.forEach((instance, i) => {
+                var lowletterInstance = JSON.parse(JSON.stringify(instance).toLowerCase())
+                if (searchResponse.length != -1) {
+                    var blacklisted = false;
+                    blacklistedKeywords.forEach(e => {
+                        if (lowletterInstance.title.search(e) != -1) {
+                            blacklisted = true;
+                        }
+                    });
+                    if (!blacklisted) {
+                        blacklistedURLKeywords.forEach(e => {
+                            if (lowletterInstance.url.search(e) != -1) {
+                                blacklisted = true;
+                            }
+                        });
+                    }
+                    if (!blacklisted) {
+                        keywords.forEach(keyword => {
+                            if (lowletterInstance.title.search(keyword) != -1 || lowletterInstance.url.search(keyword) != -1) {
+
+                                var duplicate = false
+
+                                for (let i = 0; i < searchResponse.length; i++) {
+                                    if (searchResponse[i].title == instance.title && searchResponse[i].url == instance.url) {
+                                        duplicate = true
+                                        break
+                                    }
+                                }
+
+                                if (!duplicate) {
+                                    searchResponse.push({ title: instance.title, url: instance.url, time: instance.time })
+                                    updateLoadingBar(i/historyLength)
+                                    console.log(i / historyLength*100 + "%")
+                                }
+
+
+                            }
+                        });
+                    }
+                }
+            });
+            var referenslista = ""
+            searchResponse.forEach((element, i) => {
+                log("<b>["+i+"]</b>  "+element.title + ".    <b>Hämtad " + timeConverter(element.time) + "</b> från <i>" + element.url + "</i><br><br><br>");
+            });
+            alert("Hittade ["+ searchResponse.length +"] källor som matchar sökorden "+JSON.stringify(keywords))
+            //navigator.clipboard.writeText(JSON.stringify(searchResponse))
+        }
+
+
+        function timeConverter(UNIX_timestamp) {
+            var a = new Date(UNIX_timestamp/1000);
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var year = a.getFullYear();
+            var month = months[a.getMonth()];
+            var date = a.getDate();
+            var hour = a.getHours();
+            var min = a.getMinutes();
+            var sec = a.getSeconds();
+            var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+            return time;
+        }
+
+        function log(text){
+            console.log(text)
+            var element = document.getElementById("text");
+            element.innerHTML += text
+        }
+
+        var bar = $('#mybar')
+        function updateLoadingBar(percentage){
+            var newValue = percentage + "%";
+            bar.width(newValue)
+            bar.val(newValue)
+        }
+        
+    </script>
+</body>

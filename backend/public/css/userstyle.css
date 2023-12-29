@@ -1,0 +1,465 @@
+main {
+    width: 100%;
+    margin:auto;
+    height: auto;
+    height: 100%;
+    overflow: auto;
+    min-width: 252px;
+}
+body {
+    min-width: 252px;
+    width: 65%;
+    height: 97%;
+    max-width: 1665px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    content: "";
+    background: rgba(230, 230, 230, 0.9);
+    overflow: hidden;
+}
+
+#cards{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.row {
+    display: inline-table;
+    text-align: center;
+    float: none;
+    margin: auto;
+}
+.col-sm-4 {
+    margin-left:3px;
+    margin-right:3px;
+    text-align: center;
+    max-width: 225px;
+    height: auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: #35A8E0;
+    /*box-shadow: 3px 3px 10px black;*/
+}
+input {
+    margin-right: 132px;
+}
+select {
+    width: 175px;
+    margin-right: 132px;
+}
+html {
+    background-image: url("../images/back.jpg");
+    background-image:no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.navbar {
+    -webkit-border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    border-radius: 15px 15px 0px 0px;
+    margin: auto;
+    margin-bottom: 0px;
+    width: 100%;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+footer {
+    height: 30px;
+    text-align: center;
+    background-color: white;
+    border-radius: 0px 0px 15px 15px;
+    position: fixed;
+    margin: auto;
+    max-width: 2000px;
+    width: 65%;
+    position: fixed;
+    bottom: 0;
+}
+p footer {
+    font-size: 12px;
+}
+.card {
+    width: 225px;
+    margin-left:3px;
+    margin-right:3px;
+    height: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: black;
+    /*box-shadow: 3px 3px 10px black;*/
+    text-align: center;
+    margin-top: 10px;
+}
+.btn-success {
+    margin-top: 10px;
+    width: 225px;
+    margin-left:3px;
+    margin-right:3px;
+    margin-bottom: 70px;
+}
+.card-img-top {
+    border-radius: 8px 8px 0px 0px;
+    max-width: 225px;
+}
+.card-body {
+    padding: 0px;
+    padding-top: 10px;
+    background-color: white;
+    padding-bottom: 10px;
+    margin-bottom: 3px;
+}
+.btn-secondary {
+    border-radius: 0px 0px 0px 8px;
+    width: 50%;
+    float: left;
+}
+.btn-danger {
+    border-radius: 0px 0px 8px 0px;
+    width: 50%;
+    float: right;
+}
+.btn-link {
+    color: black;
+}
+.time-picker-input {
+    width: 65px;
+    margin-right: 2px;
+    margin-left: 2px;
+    text-align: center;
+}
+
+._jw-tpk-container {
+    overflow: auto;
+    height:auto;
+}
+
+.modal-table {
+    width: 100%;
+    /*margin-left: 20px;*/
+}
+td {
+    height: 40px;
+    margin-left: 10px;
+}
+.time-picker {
+    display: inline-block;
+}
+.dropbtn {
+    background-color: #35A8E0;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+.foodList {
+    width: 100%;
+    height: 150px;
+}
+
+.noPadding {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.timeDiv {
+    background-color: #35A8E0;
+    width: 170px;
+    margin-top: 3px;
+    padding: 3px;
+    display: inline-block;
+    color: white;
+}
+.foodList h5 {
+    display: inline;
+    margin-left: 10px;
+    font-size: 20px;
+}
+.foodName {
+    position: relative;
+    float: left;
+}
+.foodPrice {
+    float: right;
+}
+#foodPic {
+    position: sticky;
+    float: left;
+    height: 148px;
+}
+.foodDesc {
+    text-align: center;
+    font-size: 16;
+    margin-top: 30px;
+}
+.btnFood {
+    width: 100%;
+}
+
+
+#picture {
+    position: relative;
+
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+    
+    justify-content: center;
+    align-items: center;
+
+    width :240px;
+    height:240px;
+
+    background-image: url("../images/placeholder.png");
+    background-repeat:no-repeat;
+    background-size:100%;
+
+    margin: 0px;
+}
+
+#canvas, #source, #sourcediv {
+    position: relative;
+    margin: 0px;
+}
+
+#progress{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    margin: auto;
+    
+}
+
+.right {
+    flex: 1;
+    height: 240px;
+    padding: 3px;
+}
+
+.left {
+    width: 240px;
+    height: 240px;
+}
+
+.canvas {
+    margin: 0px;
+}
+
+.flexbox { display: flex; }
+.flexbox .stretch { flex: 1; }
+.flexbox .normal { flex: 0; margin: 0 0 0 1rem; }
+.flexbox div input { padding: .5em 1em; width: 100%; }
+
+.drop-area {
+    height: 240px;
+    /*border: 3px #4d4d4d solid;*/
+    /*border-radius: 5px;*/
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+.drop-area.highlight {
+    background-color: rgba(0, 156, 223, 0.493);
+}
+
+
+
+.btn-outline-primary {
+    width: 100%;
+    background-color:#fff;
+}
+
+.right p {
+    text-align: center;
+    font-style: italic;
+}
+
+.right h6 {
+    text-align: center;
+}
+
+#matModal {
+    overflow: auto;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    max-width: 500px;
+    background-color: #fff;
+    border-radius: 6px;
+    list-style: none;
+    overflow: hidden;
+  }
+  .list .list-item {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ecf0f1;
+    position: relative;
+  }
+  .list .list-item:last-child {
+    border: 0;
+  }
+  .hidden-box {
+    position: absolute;
+    left: -9999px;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    opacity: 0;
+  }
+  .check--label {
+    font-size: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .check--label-box {
+    display: flex;
+    align-self: center;
+    position: relative;
+    height: 16px;
+    width: 16px;
+    margin: 0 20px;
+    border: 2px solid #3498db;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .check--label-text {
+    display: flex;
+    align-self: center;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    border-left: 1px solid #ecf0f1;
+    font-size: 16px;
+  }
+  /*.check--label-text:after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 7.5%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    transition: width 100ms ease-in-out;
+  }*/
+  .hidden-box:checked + .check--label {
+    background-color: #F9F9F9;
+  }
+  .hidden-box:checked + .check--label .check--label-box {
+    background-color: #3498db;
+  }
+  .hidden-box:checked + .check--label .check--label-box:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -1px;
+    left: 4px;
+    width: 6px;
+    height: 12px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  .hidden-box:checked + .check--label .check--label-text:after {
+    width: 85%;
+  }
+
+  .matContent {
+    width: 85%;
+    height: 150px;
+    padding-right: 5px;
+    position: fixed;
+    border: 1px solid lightgray;
+}
+.deletDis {
+    margin: 60px 0;
+    width: 30px;
+}
+.restDelet:hover {
+    cursor: pointer;
+    background-color: #ff4d4d;
+}
+.restDelet {
+    height: 150px;
+    width: 9%;
+    float: right;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.matContent:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+.btnRest{
+    width:100%;
+    margin:3px;
+}
+
+.dropdown-menu {
+    max-height: 500px;
+    overflow-y: scroll;
+}

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Animated login form</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script>
+
+
+  <style>
+    /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background: url("https://i.imgur.com/HgflTDf.jpg") 50% fixed;
+  background-size: cover;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(359deg);
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  background: rgba(4, 40, 68, 0.85);
+}
+
+.login {
+  border-radius: 2px 2px 5px 5px;
+  padding: 10px 20px 20px 20px;
+  width: 90%;
+  max-width: 320px;
+  background: #ffffff;
+  position: relative;
+  padding-bottom: 80px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.login.loading button {
+  max-height: 100%;
+  padding-top: 50px;
+}
+.login.loading button .spinner {
+  opacity: 1;
+  top: 40%;
+}
+.login.ok button {
+  background-color: #8bc34a;
+}
+.login.no button{
+  background-color: #c34a4a;
+}
+.login.ok button .spinner {
+  border-radius: 0;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  height: 20px;
+  animation: none;
+  transform: rotateZ(-45deg);
+}
+.login input {
+  display: block;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  transition: border-width 0.2s ease;
+  border-radius: 2px;
+  color: #ccc;
+}
+.login input + i.fa {
+  color: #fff;
+  font-size: 1em;
+  position: absolute;
+  margin-top: -47px;
+  opacity: 0;
+  left: 0;
+  transition: all 0.1s ease-in;
+}
+.login input:focus {
+  outline: none;
+  color: #444;
+  border-color: #2196F3;
+  border-left-width: 35px;
+}
+.login input:focus + i.fa {
+  opacity: 1;
+  left: 30px;
+  transition: all 0.25s ease-out;
+}
+.login a {
+  font-size: 0.8em;
+  color: #2196F3;
+  text-decoration: none;
+}
+.login .title {
+  color: #444;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 10px 0 30px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+.login button {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px;
+  background: #2196F3;
+  color: #fff;
+  display: block;
+  border: none;
+  margin-top: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-height: 60px;
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 2px 2px;
+  transform: rotateZ(0deg);
+  transition: all 0.1s ease-out;
+  border-bottom-width: 7px;
+}
+.login button .spinner {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border: 4px solid #ffffff;
+  border-top-color: rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  left: 50%;
+  top: 0;
+  opacity: 0;
+  margin-left: -20px;
+  margin-top: -20px;
+  animation: spinner 0.6s infinite linear;
+  transition: top 0.3s 0.3s ease, opacity 0.3s 0.3s ease, border-radius 0.3s ease;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+}
+.login:not(.loading) button:hover {
+  box-shadow: 0px 1px 3px #2196F3;
+}
+.login:not(.loading) button:focus {
+  border-bottom-width: 4px;
+}
+
+footer {
+  display: block;
+  padding-top: 50px;
+  text-align: center;
+  color: #ddd;
+  font-weight: normal;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+  font-size: 0.8em;
+}
+footer a, footer a:link {
+  color: #fff;
+  text-decoration: none;
+}
+
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: rgb(197, 255, 5);
+    font-family: Roboto;
+}
+
+.pac-controls {
+display: inline-block;
+padding: 5px 11px;
+}
+
+.pac-controls label {
+font-family: Roboto;
+font-size: 13px;
+font-weight: 300;
+}
+
+#pac-input {
+text-overflow: ellipsis;
+}
+
+#title {
+color: #fff;
+background-color: #4d90fe;
+font-size: 25px;
+font-weight: 500;
+padding: 6px 12px;
+}
+      
+
+</style>
+
+
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <form class="login">
+      <p class="title" style="text-align:center;">Skapa en restaurang</p>
+      <input type="email" id="email" placeholder="Email" />
+      <i class="fa fa-user"><img src="https://lunchdaxuf.se/Restaurant/login/images/email.png" style="width:20px;height:20px;float:left;""></i>
+
+    <input id="pac-input" type="text" placeholder="Ange en restaurang" />
+        <i class="fa fa-key">
+          <img src="https://lunchdaxuf.se/Restaurant/login/images/map-marker.png" style="width:20px;height:20px;""></i>
+
+    <input id="city" type="text" placeholder="Ange stad" />
+          <i class="fa fa-key">
+            <img src="https://lunchdaxuf.se/Restaurant/login/images/city.png" style="width:20px;height:20px;""></i>
+
+    
+    <button>
+      <i class="spinner"></i>
+          <span class="state">Skicka</span>
+          </button>
+    </form>
+    <footer><a id="footer" target="_blank" href="https://lunchdaxuf.se/">lunchdaxuf.se</a></footer>
+    </p>
+  </div>
+  <script src='../js/jquery.js'></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4xaW3aaOzL2XAOKZaK600-zbNmeI0K_4&libraries=places&callback=initPlaceSearch"
+    async defer></script>
+
+  <script>
+    const config = {
+      apiKey: "AIzaSyCShG3XUC85dn1286e--i-wRPdmt3x4Yvo",
+      authDomain: "lunchdax-89c55.firebaseapp.com",
+      databaseURL: "https://lunchdax-89c55.firebaseio.com",
+      projectId: "lunchdax-89c55",
+      storageBucket: "lunchdax-89c55.appspot.com",
+      messagingSenderId: "195085131711"
+    };
+    const app = firebase.initializeApp(config);
+    auth = firebase.auth();
+    db = firebase.firestore();
+
+    var moderator = false;
+
+    function mod(){
+      moderator = true
+      $('#email').hide()
+      $('.fa-user').hide()
+      $('.state').html("Skapa")
+    }
+
+    function login() {
+      db.settings({
+        timestampsInSnapshots: true
+      });
+      var triggerAuthEvent = true;
+      auth.onAuthStateChanged(function (user) {
+        
+        if (triggerAuthEvent) {
+          if (!user) {
+            console.log("not logged in");
+            window.location = "https://lunchdaxuf.se/login";
+          }
+          else {
+            console.log("hej: " + user.uid)
+            db.collection('moderators').doc(user.uid).get()
+              .then((doc) => {
+                triggerAuthEvent = false;
+                mod()
+              })
+              .catch((e) => {
+                console.log("no permission" + e);
+                db.collection('admins').doc(user.uid).get()
+                .then((doc) => {
+                  triggerAuthEvent = false;
+                  moderator = false
+                })
+                .catch((e) => {
+                  console.log("no permission" + e);
+                  window.location = "https://lunchdaxuf.se/login";
+                })
+              })
+          }
+        }
+      });
+    }
+
+    login()
+
+
+
+    function initPlaceSearch() {
+      var input = document.getElementById('pac-input');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.setFields(
+        ['address_components', 'formatted_address', 'geometry', 'icon', 'name', 'rating', 'opening_hours', 'website', 'photo']);
+      autocomplete.setComponentRestrictions(
+        { 'country': ['se'] });
+
+
+      autocomplete.addListener('place_changed', function () {
+
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          // User entered the name of a Place that was not suggested and
+          // pressed the Enter key, or the Place Details request failed.
+          window.alert("No details available for input: '" + place.name + "'");
+          return;
+        }
+
+
+        findCity(place.address_components);
+        document.getElementById('city').value = city;
+
+        formatOpeningHours(place.opening_hours);
+
+        //var $this = $(this);
+        $('a#footer').html('adress : ' + place.formatted_address + '<br>lat : ' + place.geometry.location.lat() + '<br>long : ' + place.geometry.location.lng() + '<br>name : ' + place.name + '<br>rating : ' + place.rating + '<br>photo : ' + place.photo + '<br>website : ' + place.website);
+        name = place.name;
+        address = place.formatted_address;
+        lat = place.geometry.location.lat();
+        lon = place.geometry.location.lng();
+        rating = place.rating;
+        icon_url = place.icon;
+
+        website = place.website;
+        photo = place.photo;
+
+
+      })
+    }
+    var name = "";
+    var address = "";
+    var lat = "";
+    var lon = "";
+    var rating = "";
+    var opening_hours = [];
+    var icon_url = "";
+
+    var website = "";
+    var photo = "";
+
+
+
+
+    function findCity(addresses) {
+      addresses.forEach(component => {
+        component.types.forEach(type => {
+          if (type == "postal_town") {
+            city = component.short_name;
+            return;
+          }
+        });
+      });
+    }
+
+
+
+    function formatOpeningHours(hours) {
+      var newHours = [];
+      for (let i = 0; i < hours.periods.length; i++) {
+        var close = (hours.periods[i].close == null) ? "0000" : hours.periods[i].close.time;
+
+        newHours.push({
+          open: hours.periods[i].open.time,
+          close: close,
+          day: hours.periods[i].open.day
+        });
+      }
+      opening_hours = newHours;
+    }
+
+    var city = "";
+
+
+
+var secondaryApp
+
+    document.addEventListener('DOMContentLoaded', function () {
+      $(".login").on('submit', function (e) {
+        e.preventDefault();
+
+        var $this = $(this),
+          $state = $this.find('button > .state');
+        $this.addClass('loading');
+        $state.html('Verifierar');
+        $this.removeClass('ok no');
+
+
+        email = document.getElementById('email').value;
+        city = document.getElementById('city').value;
+        if (city == "") { showError({code:"Invalid city"}); return; }
+        if (email.search("@") == -1 && !moderator) { showError({code:"Invalid email"}); return; }
+
+        var actionCodeSettings = {
+          url: 'https://lunchdaxuf.se/Restaurant/login/createPass.html',
+          handleCodeInApp: true
+        };
+
+        var text = document.getElementById('text');
+
+        if (moderator) {
+          const ref = db.collection('cities').doc(city).collection("restaurants").doc()
+          ref.set({
+            opening_hours: opening_hours,
+            name: name,
+            rating: rating,
+            address: address,
+            lat: lat,
+            lon: lon,
+            icon: icon_url
+          })
+            .then(() => {
+              var rId = ref.id
+              const modRef = db.collection('moderators').doc(auth.currentUser.uid)
+              modRef.get()
+                .then((doc) => {
+                  var managedRestaurants = doc.data().restaurants
+                  if (managedRestaurants == null) managedRestaurants = [];
+
+                  managedRestaurants.push(rId)
+                  modRef.update({
+                    restaurants: managedRestaurants
+                  })
+                    .then(() => { window.location = "https://lunchdaxuf.se/user?u="+rId;})
+                    .catch((error) => { showError(error) })
+                })
+                .catch((error) => { showError(error) })
+            })
+        }
+        else {
+        if (firebase.apps.length < 2) {
+          secondaryApp = firebase.initializeApp(config, "other");
+        }
+
+
+        secondaryApp.auth().createUserWithEmailAndPassword(email, "supersecretpassword")
+          .then(function (data) {
+            var user = data.user
+            secondaryApp.auth().signOut();
+            db.collection('cities').doc(city).collection("restaurants").doc(user.uid).set({
+              opening_hours: opening_hours,
+              name: name,
+              rating: rating,
+              address: address,
+              lat: lat,
+              lon: lon,
+              icon: icon_url
+            })
+              .then(() => {
+                console.log(user.uid + " : " + auth.currentUser.uid)
+
+                  db.collection('users').doc(user.uid).set({
+                    name: name
+                  })
+                    .then(() => {
+                      secondaryApp.auth().sendPasswordResetEmail(email)
+                        .then(function () {
+                          $this.addClass('ok');
+                          $state.html('<br><br>Begäran slutförd,<br><br>ett mail har skickats till ' + email);
+                          setTimeout(function () {
+                            document.getElementById("email").focus();
+                            $state.html('Skicka');
+                            $this.removeClass('ok loading');
+                            window.location = "https://lunchdaxuf.se/skapa_restaurang";
+                          }, 2000);
+                        })
+                        .catch((error) => {
+                          showError(error);
+                        });
+                    })
+                    .catch((error) => {
+                      showError(error)
+                    })
+                })
+              .catch((error) => {
+                showError(error);
+              });
+
+          })
+          .catch((error) => {
+            showError(error);
+          });
+        }
+
+
+        function showError(e) {
+          console.log(e)
+          $state.html(e.code);
+          $this.addClass('no');
+          setTimeout(function () {
+            document.getElementById("email").focus();
+            $this.removeClass('loading');
+          }, 250);
+          setTimeout(function () {
+            $state.html('Skicka');
+            $this.removeClass('no');
+          }, 4000);
+        }
+      });
+    });
+
+
+  </script>
+  </body>
+  
+  </html>
